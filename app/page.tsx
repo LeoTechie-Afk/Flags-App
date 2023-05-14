@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import Input from "./components/Input";
 import data from "../data/index.json";
 import Flag from "./components/Flag";
 import Heading from "./components/Heading";
+import DarkModeButton from "./components/DarkModeButton";
 
 // TO_DO
 // Add sorting system and dark mode
@@ -15,23 +16,29 @@ interface FlagValues {
   image: string;
 }
 
-export default function Home() {
+const Home: FC = () => {
   const [flagsArray, setFlagsArray] = useState<FlagValues[]>([]);
   const [searchValue, setSearchValue] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     setFlagsArray(data);
   }, []);
 
   return (
-    <div className="container">
+    <div
+      className={`flex flex-col items-center w-screen h-screen bg-cyan-50  ${
+        darkMode && "dark"
+      }`}
+    >
+      <DarkModeButton onClickHandler={() => setDarkMode(!darkMode)} />
       <Heading />
       <Input
         onChange={(e) => {
           setSearchValue(e.target.value.toLowerCase());
         }}
       />
-      <div className="justify-around flex flex-row flex-wrap backdrop-blur-md h-5/6 overflow-y-scroll">
+      <div className="justify-around flex flex-row flex-wrap h-5/6 w-5/6 overflow-y-scroll">
         {flagsArray.map(
           ({ name, emoji, image }: FlagValues, index) =>
             name.toLowerCase().startsWith(searchValue) && (
@@ -41,4 +48,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

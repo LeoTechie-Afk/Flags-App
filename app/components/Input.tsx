@@ -1,17 +1,19 @@
-import React, { ChangeEvent } from "react";
+import { FC, ChangeEvent } from "react";
 
 type InputProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input = (props: InputProps) => {
+const Input: FC<InputProps> = (props) => {
   return (
-    <input
-      onChange={props.onChange}
-      type="text"
-      placeholder="Search Country..."
-      className="flex justify-center items-center w-fit h-12 m-8 p-4 rounded-xl text-cyan-50 border-4 border-cyan-50 bg-slate-800"
-    />
+    <div className="p-8">
+      <input
+        onChange={props.onChange}
+        type="text"
+        placeholder="Search Country..."
+        className="flex shadow-lg justify-center mx-auto my-4 items-center w-fit h-12 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-4 border-cyan-200"
+      />
+    </div>
   );
 };
 
