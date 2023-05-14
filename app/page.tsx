@@ -7,9 +7,6 @@ import Flag from "./components/Flag";
 import Heading from "./components/Heading";
 import DarkModeButton from "./components/DarkModeButton";
 
-// TO_DO
-// Add sorting system and dark mode
-
 interface FlagValues {
   name: string;
   emoji: string;
